@@ -1,0 +1,35 @@
+{{- if .Values.route.enabled }}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ include "helm-rh-keycloak.fullname" . }}
+  labels:
+    {{- include "helm-rh-keycloak.labels" . | nindent 4 }}
+spec:
+  to:
+    kind: Service
+    name: {{ include "helm-rh-keycloak.fullname" . }}
+  # port:
+  #   targetPort: {{ tpl .Values.service.targetPort . }}
+{{- if .Values.route.tls.enabled }}
+  tls:
+    termination: {{ .Values.route.tls.termination }}
+    # insecureEdgeTerminationPolicy: {{ .Values.route.tls.insecureEdgeTerminationPolicy }}
+  {{- if .Values.route.tls.key }}
+    key: |-
+      {{- .Values.route.tls.key | nindent 6 }}
+  {{- end }}
+  {{- if .Values.route.tls.destinationCACertificate }}
+    destinationCACertificate: |-
+      {{- .Values.route.tls.destinationCACertificate | nindent 6 }}
+  {{- end }}
+  {{- if .Values.route.tls.caCertificate }}
+    caCertificate: |-
+      {{- .Values.route.tls.caCertificate | nindent 6 }}
+  {{- end }}
+  {{- if .Values.route.tls.certificate }}
+    certificate: |-
+      {{- .Values.route.tls.certificate | nindent 6 }}
+  {{- end }}
+{{- end }}
+{{- end }}

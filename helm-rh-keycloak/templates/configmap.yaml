@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configmap_name }}
+  labels:
+    {{- include "helm-rh-keycloak.labels" . | nindent 4 }}
+data:
+  KEYCLOAK_ADMIN: {{ .Values.keycloak_admin }}
+  KEYCLOAK_ADMIN_PASSWORD: {{ .Values.keycloak_admin_password }}
+  KC_PROXY: 'edge'
