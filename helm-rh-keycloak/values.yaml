@@ -86,14 +86,14 @@ livenessProbe:
   httpGet:
     path: /
     port: 8080
-  initialDelaySeconds: 60
+  initialDelaySeconds: 20
 
 readinessProbe:
   failureThreshold: 300
   httpGet:
     path: /
     port: 8080
-  initialDelaySeconds: 30
+  initialDelaySeconds: 10
 
 autoscaling:
   enabled: false
