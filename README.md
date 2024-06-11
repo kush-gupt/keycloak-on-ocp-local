@@ -27,4 +27,6 @@
     - A sample custom resource OAuth object is included in the documentation and under `oauth-keycloak.yml` using the parameters above
     - Once you have that configured to your parameters, throw it into OpenShift using `oc apply -f </path/to/oauth-keycloak.yml>`
     - Wait for the authentication operator to refresh and you should see an option to login using keycloak!
-   
+    - Setup passkey flow in place of the browser flow and make passwordless required for registration. Change the flow and enable registration for ease of use.
+    - Go to `https://demo-helm-rh-keycloak-keycloak.apps-crc.testing/realms/openshift/account` and setup your passkey
+    - Test it out by trying to log into the console! 
